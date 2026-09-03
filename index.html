@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>MathGol — Cobrança de pênalti com matemática</title>
+<meta name="description" content="MathGol: fase de pênaltis com perguntas de matemática, para crianças.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div id="app">
+
+  <div class="topo">
+    <p class="marca">⚽ MathGol</p>
+    <button id="botao-acessibilidade" class="botao-icone" type="button" aria-label="Abrir opções de acessibilidade">♿</button>
+  </div>
+
+  <!-- ========== MENU ========== -->
+  <section id="tela-menu" class="tela">
+    <h1>MathGol</h1>
+    <p class="subtitulo">Acerte a conta, escolha o canto e faça o gol!</p>
+    <div class="pilha-botoes">
+      <button id="botao-jogar" class="botao" type="button">Jogar</button>
+    </div>
+  </section>
+
+  <!-- ========== APELIDO ========== -->
+  <section id="tela-apelido" class="tela">
+    <h2>Seu apelido de craque</h2>
+    <p class="subtitulo">Sorteamos um nome só pra você. Não usamos seu nome real.</p>
+    <div class="avatar-apelido" aria-hidden="true">🧑‍🚀</div>
+    <p id="texto-apelido" class="caixa-apelido">—</p>
+    <div class="pilha-botoes">
+      <button id="botao-sortear-apelido" class="botao botao-azul" type="button">🎲 Sortear outro</button>
+      <button id="botao-confirmar-apelido" class="botao" type="button">Confirmar apelido</button>
+    </div>
+  </section>
+
+  <!-- ========== SELEÇÃO ========== -->
+  <section id="tela-selecao" class="tela">
+    <h2>Escolha sua seleção</h2>
+    <p class="subtitulo">Com qual time você vai bater o pênalti?</p>
+    <div id="grade-selecoes" class="grade-cartoes"></div>
+    <div class="pilha-botoes" style="margin-top: 24px;">
+      <button id="botao-confirmar-selecao" class="botao" type="button" disabled>Confirmar seleção</button>
+    </div>
+  </section>
+
+  <!-- ========== DIFICULDADE ========== -->
+  <section id="tela-dificuldade" class="tela">
+    <h2>Escolha a dificuldade</h2>
+    <p class="subtitulo">Pode trocar depois, sem problema nenhum.</p>
+    <div id="grade-dificuldades" class="grade-cartoes"></div>
+    <div class="pilha-botoes" style="margin-top: 24px;">
+      <button id="botao-confirmar-dificuldade" class="botao" type="button" disabled>Começar Fase 1</button>
+    </div>
+  </section>
+
+  <!-- ========== FASE 1 ========== -->
+  <section id="tela-fase1" class="tela">
+    <div id="cabecalho-fase" class="cabecalho-fase"></div>
+
+    <div id="area-pergunta" style="width:100%; display:flex; flex-direction:column; align-items:center;">
+      <div class="caixa-pergunta">
+        <p id="pergunta-texto" class="pergunta-texto">—</p>
+      </div>
+      <div id="grade-alternativas" class="grade-alternativas"></div>
+    </div>
+
+    <div id="area-jogo" style="width:100%; display:none; flex-direction:column; align-items:center;">
+      <div id="jogo-penalti"></div>
+      <div class="linha-direcoes">
+        <button class="botao botao-secundario botao-direcao" type="button" data-direcao="esquerda" disabled>⬅️ Esquerda</button>
+        <button class="botao botao-secundario botao-direcao" type="button" data-direcao="centro" disabled>⬆️ Centro</button>
+        <button class="botao botao-secundario botao-direcao" type="button" data-direcao="direita" disabled>➡️ Direita</button>
+      </div>
+    </div>
+
+    <p id="mensagem-feedback" class="mensagem-feedback"></p>
+  </section>
+
+  <!-- ========== RESULTADO ========== -->
+  <section id="tela-resultado" class="tela">
+    <h2>Fim da Fase 1!</h2>
+    <p id="placar-final" class="placar-grande">0 / 3</p>
+    <p id="resumo-resultado" class="resumo-resultado">—</p>
+    <div class="pilha-botoes">
+      <button id="botao-voltar-menu" class="botao" type="button">Voltar ao menu</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- ========== MODAL DE ACESSIBILIDADE ========== -->
+<div id="sobreposicao-acessibilidade" class="sobreposicao">
+  <div class="painel-acessibilidade">
+    <h2 style="text-align:left; margin-bottom:16px;">Acessibilidade</h2>
+
+    <div class="linha-opcao">
+      <label for="opcao-alto-contraste">Alto contraste</label>
+      <span class="alternador">
+        <input type="checkbox" id="opcao-alto-contraste">
+        <span class="trilho-alternador"></span>
+      </span>
+    </div>
+
+    <div class="linha-opcao">
+      <label for="opcao-espaco-dislexia">Espaçamento para dislexia</label>
+      <span class="alternador">
+        <input type="checkbox" id="opcao-espaco-dislexia">
+        <span class="trilho-alternador"></span>
+      </span>
+    </div>
+
+    <div class="linha-opcao">
+      <label for="opcao-narracao">Narração em áudio</label>
+      <span class="alternador">
+        <input type="checkbox" id="opcao-narracao">
+        <span class="trilho-alternador"></span>
+      </span>
+    </div>
+
+    <div class="pilha-botoes" style="margin-top: 20px;">
+      <button id="botao-fechar-acessibilidade" class="botao" type="button">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/questions.js"></script>
+<script src="js/narration.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
