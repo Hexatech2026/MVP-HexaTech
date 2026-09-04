@@ -17,48 +17,67 @@
 <div id="app">
 
   <div class="topo">
-    <p class="marca">⚽ MathGol</p>
+    <p class="marca">
+      <svg class="mascote mascote-mini" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" fill="#FFFDF6" stroke="#21303B" stroke-width="5"/>
+        <polygon points="50,28 63,38 58,54 42,54 37,38" fill="#21303B"/>
+        <circle cx="34" cy="42" r="4" fill="#21303B"/>
+        <circle cx="66" cy="42" r="4" fill="#21303B"/>
+        <path d="M36 62 Q50 74 64 62" stroke="#21303B" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+      MathGol
+    </p>
     <button id="botao-acessibilidade" class="botao-icone" type="button" aria-label="Abrir opções de acessibilidade">♿</button>
   </div>
 
   <!-- ========== MENU ========== -->
-  <section id="tela-menu" class="tela">
+  <section id="tela-menu" class="tela tela-menu">
+    <div class="forma-confete forma-1" aria-hidden="true"></div>
+    <div class="forma-confete forma-2" aria-hidden="true"></div>
+    <div class="forma-confete forma-3" aria-hidden="true"></div>
+
+    <svg class="mascote mascote-grande" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="46" fill="#FFFDF6" stroke="#21303B" stroke-width="5"/>
+      <polygon points="50,28 63,38 58,54 42,54 37,38" fill="#21303B"/>
+      <circle cx="34" cy="40" r="4.5" fill="#21303B"/>
+      <circle cx="66" cy="40" r="4.5" fill="#21303B"/>
+      <path d="M35 60 Q50 74 65 60" stroke="#21303B" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </svg>
+
     <h1>MathGol</h1>
-    <p class="subtitulo">Acerte a conta, escolha o canto e faça o gol!</p>
+    <p class="subtitulo subtitulo-curto">Chuta, acerta e faz o gol! ⚽</p>
     <div class="pilha-botoes">
-      <button id="botao-jogar" class="botao" type="button">Jogar</button>
+      <button id="botao-jogar" class="botao botao-cta" type="button">Jogar</button>
     </div>
   </section>
 
   <!-- ========== APELIDO ========== -->
   <section id="tela-apelido" class="tela">
     <h2>Seu apelido de craque</h2>
-    <p class="subtitulo">Sorteamos um nome só pra você. Não usamos seu nome real.</p>
-    <div class="avatar-apelido" aria-hidden="true">🧑‍🚀</div>
+    <span class="selo">🔒 Sem nome real</span>
+    <div class="avatar-apelido" id="avatar-apelido" aria-hidden="true">🧑‍🚀</div>
     <p id="texto-apelido" class="caixa-apelido">—</p>
     <div class="pilha-botoes">
       <button id="botao-sortear-apelido" class="botao botao-azul" type="button">🎲 Sortear outro</button>
-      <button id="botao-confirmar-apelido" class="botao" type="button">Confirmar apelido</button>
+      <button id="botao-confirmar-apelido" class="botao" type="button">Confirmar ✅</button>
     </div>
   </section>
 
   <!-- ========== SELEÇÃO ========== -->
   <section id="tela-selecao" class="tela">
-    <h2>Escolha sua seleção</h2>
-    <p class="subtitulo">Com qual time você vai bater o pênalti?</p>
+    <h2>Escolha seu time</h2>
     <div id="grade-selecoes" class="grade-cartoes"></div>
     <div class="pilha-botoes" style="margin-top: 24px;">
-      <button id="botao-confirmar-selecao" class="botao" type="button" disabled>Confirmar seleção</button>
+      <button id="botao-confirmar-selecao" class="botao" type="button" disabled>Confirmar ✅</button>
     </div>
   </section>
 
   <!-- ========== DIFICULDADE ========== -->
   <section id="tela-dificuldade" class="tela">
-    <h2>Escolha a dificuldade</h2>
-    <p class="subtitulo">Pode trocar depois, sem problema nenhum.</p>
+    <h2>Nível do desafio</h2>
     <div id="grade-dificuldades" class="grade-cartoes"></div>
     <div class="pilha-botoes" style="margin-top: 24px;">
-      <button id="botao-confirmar-dificuldade" class="botao" type="button" disabled>Começar Fase 1</button>
+      <button id="botao-confirmar-dificuldade" class="botao" type="button" disabled>Bora jogar! ⚽</button>
     </div>
   </section>
 
@@ -66,19 +85,18 @@
   <section id="tela-fase1" class="tela">
     <div id="cabecalho-fase" class="cabecalho-fase"></div>
 
-    <div id="area-pergunta" style="width:100%; display:flex; flex-direction:column; align-items:center;">
-      <div class="caixa-pergunta">
-        <p id="pergunta-texto" class="pergunta-texto">—</p>
-      </div>
-      <div id="grade-alternativas" class="grade-alternativas"></div>
+    <div class="caixa-pergunta">
+      <p id="pergunta-texto" class="pergunta-texto">—</p>
     </div>
 
-    <div id="area-jogo" style="width:100%; display:none; flex-direction:column; align-items:center;">
+    <div class="palco-penalti">
       <div id="jogo-penalti"></div>
-      <div class="linha-direcoes">
-        <button class="botao botao-secundario botao-direcao" type="button" data-direcao="esquerda" disabled>⬅️ Esquerda</button>
-        <button class="botao botao-secundario botao-direcao" type="button" data-direcao="centro" disabled>⬆️ Centro</button>
-        <button class="botao botao-secundario botao-direcao" type="button" data-direcao="direita" disabled>➡️ Direita</button>
+      <div id="zonas-gol" class="zonas-gol">
+        <button class="botao-zona zona-topo-esquerda" type="button" data-zona="topo-esquerda">—</button>
+        <button class="botao-zona zona-topo-direita" type="button" data-zona="topo-direita">—</button>
+        <button class="botao-zona zona-meio" type="button" data-zona="meio">—</button>
+        <button class="botao-zona zona-baixo-esquerda" type="button" data-zona="baixo-esquerda">—</button>
+        <button class="botao-zona zona-baixo-direita" type="button" data-zona="baixo-direita">—</button>
       </div>
     </div>
 
